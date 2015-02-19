@@ -37,6 +37,7 @@ class ConfigProperty {
 
 	static mapping = {
 		//id generator: 'sequence', params: [sequence: 'config_seq']
+        key column: 'config_key'
 	}
 	
 	String toString() {
