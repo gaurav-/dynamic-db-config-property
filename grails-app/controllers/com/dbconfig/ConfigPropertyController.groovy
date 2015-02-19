@@ -2,7 +2,6 @@ package com.dbconfig
 
 import org.springframework.dao.DataIntegrityViolationException
 import org.codehaus.groovy.grails.commons.GrailsApplication
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 import com.dbconfig.ConfigProperty;
 

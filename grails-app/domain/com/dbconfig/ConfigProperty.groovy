@@ -1,6 +1,6 @@
 package com.dbconfig
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import grails.util.Holders
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 
 
@@ -45,7 +45,7 @@ class ConfigProperty {
 	
 	def beforeDelete = {
 		deleteConfigMap()
-		//CH.config.remove(key)
+        Holders.config.remove(key)
 	}
 
 	def beforeInsert = {
@@ -67,11 +67,11 @@ class ConfigProperty {
 		}
 		
 		ConfigObject configObject = new ConfigSlurper().parse(objectString)
-		CH.config.merge(configObject)
+		Holders.config.merge(configObject)
 	}
 	
 	def deleteConfigMap() {
-		def previousValue = CH.flatConfig[key]?.toString()
+		def previousValue = Holders.flatConfig[key]?.toString()
 		if(previousValue){
 			Boolean useQuotes = !(DefaultGroovyMethods.isNumber(previousValue) || DefaultGroovyMethods.isFloat(previousValue) || previousValue in ['true', 'false'])
 			String objectString
@@ -83,10 +83,10 @@ class ConfigProperty {
 			}
 				
 			ConfigObject configObject = new ConfigSlurper().parse(objectString)
-			CH.config.merge(configObject)
+			Holders.config.merge(configObject)
 		}
 		else{
-			CH.config.remove(key)
+            Holders.config.remove(key)
 		}
 		
 	}
